@@ -1,0 +1,37 @@
+<br>
+<div class="row">
+    <div class="col text-right">
+        <button [routerLink]="['/newSup', 'nuevo']" class="btn btn-primary">Agregar suplidor</button>
+
+    </div>
+    <br><br>
+</div>
+<div class="row">
+    <div class="col">
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Representante</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Opciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sup of _service.objSuplidor; let i = index ">
+                    <td scope="row"> {{i + 1}} </td>
+                    <td> {{sup.nombre}} </td>
+                    <td> {{sup.rep}} </td>
+                    <td> {{sup.telef}} </td>
+                    <td> {{sup.dir}} </td>
+                    <td> <button [routerLink]="['/newSup',sup.key$]" class="margin btn btn-dark">Editar</button>
+                        <button (click)='Del(sup.key$)' class="margin btn btn-danger">Eliminar</button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

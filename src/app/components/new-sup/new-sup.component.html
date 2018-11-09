@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <h1>Registro de suplidores</h1>
+        <hr>
+        <br>
+
+        <div class="container row">
+            <div class="col-md-8">
+                <div class="text-right">
+                    <button class="btn btn-outline-primary " [routerLink]="['/suplidores']">Regresar</button>
+                </div>
+                <br>
+                <form ngNativeValidate (ngSubmit)="guardar()" #forma="ngForm">
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input [(ngModel)]="supli.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del suplidor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Representante</label>
+                        <input [(ngModel)]="supli.rep" name="rep" type="text" class="form-control" placeholder="Representante" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefono</label>
+                        <input [(ngModel)]="supli.telef" name="telef" type="text" class="form-control" placeholder="Telefono ">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input [(ngModel)]="supli.dir" name="dir" type="text" class="form-control" placeholder="Direccion">
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <button [disabled]="!forma.valid" type="submit" class="btn btn-outline-info">
+                Guardar
+              </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

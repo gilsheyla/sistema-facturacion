@@ -1,0 +1,46 @@
+<div>
+    <h1>
+        Registro de cliente</h1>
+</div>
+<hr>
+<br>
+<div class="container row">
+    <div class="col-md-8">
+        <div class="text-right">
+            <button class="btn btn-outline-primary " [routerLink]="['/clientes']">Regresar</button>
+            <button class="btn btn-outline-success" (click)="addN(forma)">Agregar nuevo</button>
+        </div>
+        <br>
+        <form (ngSubmit)="guardar()" #forma="ngForm">
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [(ngModel)]="clientes.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del cliente" required>
+            </div>
+
+            <div class="form-group">
+                <label>Apellido</label>
+                <input [(ngModel)]="clientes.apellido" name="apellido" type="text" class="form-control" placeholder="Apellido del cliente" required>
+            </div>
+
+            <div class="form-group">
+                <label>Direccion</label>
+                <input [(ngModel)]="clientes.direccion" name="direccion" type="text" class="form-control" placeholder="Direccion">
+            </div>
+
+            <div class="form-group">
+                <label>Telefono</label>
+                <input [(ngModel)]="clientes.telef" name="telef" type="text" class="form-control" placeholder="Telefono" required>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <button [disabled]="!forma.valid" type="submit" class="btn btn-outline-secondary">
+                  Guardar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

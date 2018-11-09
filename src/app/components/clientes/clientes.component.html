@@ -1,0 +1,37 @@
+<br>
+<div class="row">
+    <div class="col text-right container">
+        <button style="margin-right: 50px" [routerLink]="['/newClient','nuevo']" class="btn btn-primary">Agregar cliente</button>
+
+    </div>
+    <br><br>
+</div>
+<div class="row">
+    <div class="col">
+
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+
+                    <th scope="col">Code</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of cliente; let i = index">
+                    <td scope="row"> {{i + 1}} </td>
+                    <td>{{client.nombre}}</td>
+                    <td> {{client.apellido}} </td>
+                    <td> {{client.direccion}} </td>
+                    <td> {{client.telef}} </td>
+                    <td> <button [routerLink]="['/newClient',client.key$]" class="margin btn btn-dark">Editar</button>
+                        <button (click)='Delete(client.key$)' class="margin btn btn-danger">Eliminar</button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
