@@ -28,8 +28,8 @@
                     <td> {{sup.rep}} </td>
                     <td> {{sup.telef}} </td>
                     <td> {{sup.dir}} </td>
-                    <td> <button [routerLink]="['/newSup',sup.key$]" class="margin btn btn-dark">Editar</button>
-                        <button (click)='Del(sup.key$)' class="margin btn btn-danger">Eliminar</button> </td>
+                    <td> <button [routerLink]="['/newSup',sup.id]" class="margin btn btn-dark">Editar</button>
+                        <button (click)='Del(sup.id)' class="margin btn btn-danger">Eliminar</button> </td>
                 </tr>
             </tbody>
         </table>

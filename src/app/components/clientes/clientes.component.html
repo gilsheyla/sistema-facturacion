@@ -22,14 +22,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let client of cliente; let i = index">
+                <tr *ngFor="let client of _service.objCliente; let i = index">
                     <td scope="row"> {{i + 1}} </td>
                     <td>{{client.nombre}}</td>
                     <td> {{client.apellido}} </td>
                     <td> {{client.direccion}} </td>
                     <td> {{client.telef}} </td>
-                    <td> <button [routerLink]="['/newClient',client.key$]" class="margin btn btn-dark">Editar</button>
-                        <button (click)='Delete(client.key$)' class="margin btn btn-danger">Eliminar</button> </td>
+                    <td> <button [routerLink]="['/newClient',client.id]" class="margin btn btn-dark">Editar</button>
+                        <button (click)='Delete(client.id)' class="margin btn btn-danger">Eliminar</button> </td>
                 </tr>
             </tbody>
         </table>

@@ -6,8 +6,9 @@ import { SuplidoresComponent } from './components/suplidores/suplidores.componen
 import { ProductosComponent } from "./components/productos/productos.component";
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ReportesComponent } from "./components/reportes/reportes.component";
-import { NewClientComponent } from "./components/new-client/new-client.component";
-import { NewSupComponent } from './components/new-sup/new-sup.component';
+import { NewClientComponent } from "./components/clientes/new-client.component";
+import { NewSupComponent } from './components/suplidores/new-sup.component';
+import { LoginComponent } from "./components/usuario/login.component";
 
 
 const RUTAS: Routes = [
@@ -20,7 +21,9 @@ const RUTAS: Routes = [
     {path: 'productos', component:ProductosComponent},
     {path: 'ventas', component:VentasComponent},
     {path: 'reportes', component:ReportesComponent},
+    {path: 'newUser', component:LoginComponent},
     {path: '**', pathMatch:'full', redirectTo: 'usuario'}
+    
 
 ];
 

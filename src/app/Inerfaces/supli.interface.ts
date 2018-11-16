@@ -5,7 +5,7 @@ export interface Suplidor {
     telef: string;
     dir: string;
     estado:number
-    key$?:string;
+    id?:string;
 
 }
 

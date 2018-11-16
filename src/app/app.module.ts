@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,11 +19,14 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { APP_ROUTES } from './app.routes';
-import { NewClientComponent } from './components/new-client/new-client.component';
+import { NewClientComponent } from './components/clientes/new-client.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FactService } from './services/fact.service';
 import { HttpClientModule } from "@angular/common/http";
-import { NewSupComponent } from './components/new-sup/new-sup.component';
+import { NewSupComponent } from './components/suplidores/new-sup.component';
+import { LoginComponent } from './components/usuario/login.component';
+import { LogService } from './services/log.service';
+import { SupService } from './services/sup.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { NewSupComponent } from './components/new-sup/new-sup.component';
     ReportesComponent,
     NavbarComponent,
     NewClientComponent,
-    NewSupComponent
+    NewSupComponent,
+    LoginComponent
     
   ],
   imports: [
@@ -47,11 +52,15 @@ import { NewSupComponent } from './components/new-sup/new-sup.component';
     HttpClientModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
-    FactService
+    FactService,
+    SupService,
+    LogService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

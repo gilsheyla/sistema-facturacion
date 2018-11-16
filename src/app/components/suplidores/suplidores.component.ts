@@ -11,6 +11,7 @@ export class SuplidoresComponent implements OnInit {
 
   
     supli:any[] = [];
+    
 
   constructor(public _service:SupService,
               private ruta: Router) { 
@@ -23,14 +24,9 @@ export class SuplidoresComponent implements OnInit {
    }
   
 Del(key$: string){
+
   this._service.deleteSup(key$)
-  .subscribe(data =>{
-    if (data){
-      console.error(data)
-    }else{
-      delete this.supli[key$]
-    }
-  })
+
 }
 
 

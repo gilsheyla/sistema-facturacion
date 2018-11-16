@@ -1,67 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Cliente } from '../Inerfaces/cliente.interface';
-
-
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FactService {
 
-  ClienteUrl: string = 'https://cosa1-49b77.firebaseio.com/Cliente.json' ;
-  clienteUrl: string = 'https://cosa1-49b77.firebaseio.com/Cliente';
+  ClienteUrl: string = '/clientes' ;
+  objCliente: any[] = [];
 
-
-  constructor(private http: HttpClient) { }
- 
+  constructor( public db:AngularFirestore) { }
  
  nuevoCliente(cliente: Cliente) {
- const body = JSON.stringify(cliente);
- 
- return this.http.post(this.ClienteUrl, body ).pipe(
-  map( res => {
-    console.log (res);
-    return res;
-  })
- );
+ return this.db.collection('clientes').add(cliente)
 }
 
-actualizarCliente(cliente: Cliente, key$: string) {
-  const body = JSON.stringify(cliente);
-  let Url = `${ this.clienteUrl }/${ key$ }.json`
-  return this.http.put(Url, body ).pipe(
-   map( res => {
-     return res;
-   })
-  );
+actualizarCliente(key$:string, data) {
+  return this.db.doc(`${this.ClienteUrl}/${key$}`)
+  .update(data)
  }
 
 getCliente( key$:string ){
-  let Url = `${ this.clienteUrl }/${ key$ }.json`;
-  return this.http.get(Url ).pipe(
-    map( res => {
-     console.log(res);
-      return res;}
-    ))}
+  return this.db.doc(`${this.ClienteUrl}/${key$}`)
+}
 
 getListc (){
-  return this.http.get(this.ClienteUrl).pipe(
-    map( res => {
-     console.log(res);
-      return res;}
-    ))
+this.db.collection('clientes', (ref => ref.where('estado', '==', 1))).snapshotChanges()
+.subscribe( res =>{
+  this.objCliente=[]
+  res.map(a =>{
+    const datos: any = a.payload.doc.data()
+    datos.id = a.payload.doc.id
+    this.objCliente.push( datos)
+    })
+  })
 }
 
 deleteCl(key$: string){
-  let Url = `${ this.clienteUrl }/${ key$ }.json`
-  return this.http.delete( Url ).pipe(
-   map( res => {
-     console.log (res);
-     return res;
-   })
-  );
+  let estado ={
+    estado: 2
+  }
+  this.db.doc(`${this.ClienteUrl}/${key$}`)
+  .update(estado)
+  console.log("Se elimino correctamente")
 }
 
 }

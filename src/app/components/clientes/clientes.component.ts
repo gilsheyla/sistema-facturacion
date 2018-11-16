@@ -11,37 +11,20 @@ export class ClientesComponent implements OnInit {
  
 cliente: any[] = [];
 
-  constructor(private _service:FactService,
+  constructor(public _service:FactService,
               private ruta: Router) { 
-    this._service.getListc().subscribe(data =>{
-
-      for(let key$ in data){
-      let c = data[key$];
-      c.key$ = key$;
-      this.cliente.push(data [key$])
-    }})
-    console.log(this.cliente) 
+    
     
    }
 
 
   ngOnInit() {
+    this._service.getListc()
   }
 
 Delete(key$: string){
-
   this._service.deleteCl(key$)
-      .subscribe(data =>{
-if (data) {
-  console.error(data)
-}else{
-  delete this.cliente[key$]
-}
-      } 
-      
-        );
-  
 
-}
+  }
 
 }

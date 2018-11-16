@@ -4,6 +4,7 @@ export interface Cliente {
     apellido: string;
     direccion: string;
     telef: string;
+    estado:number
     key$?:string;
 
 }

@@ -1,9 +1,9 @@
 export interface User {
 
-    nombre: string;
+    nombre?: string;
+    usuario:string
     clave: string;
-    tipUsu: string;
+    tipUsu?: string;
     key$?:string;
-
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../Inerfaces/user.interface';
 
 @Component({
   selector: 'app-usuario',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioComponent implements OnInit {
 
+user:User = {
+  usuario:'',
+  clave:''
+}
+
   constructor() { }
+
+
 
   ngOnInit() {
   }
 
+  guardar(){
+    
+  }
 }
