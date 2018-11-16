@@ -23,15 +23,5 @@ user:User = {
   ngOnInit() {
   }
 
-guardar(){
-  this._service.addUser(this.user).then(()=>
-  {
-    this.user = {
-      usuario:'',
-    nombre:'',
-    clave:'',
-    tipUsu:'' 
-  }})
-}
 
 }
