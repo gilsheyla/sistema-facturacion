@@ -1,4 +1,4 @@
-<div class='col'>
+<!--<div class='col'>
     <div class="container uk-margin-top:50px">
         <h3>Iniciar sesion</h3>
     </div>
@@ -20,4 +20,29 @@
             <button class="margin btn btn-outline-primary" [routerLink]="['/newUser']">Crear usuario</button>
         </div>
     </form>
+</div>-->
+
+<div *ngIf="_service.user | async; then authenticated else guest">
+
 </div>
+
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+    <h3>Howdy, GUEST</h3>
+    <p>Login to get started...</p>
+
+    <button (click)="_service.Login()">
+    <i class="fa fa-google"></i> Connect Google
+</button>
+
+</ng-template>
+
+
+<!-- User logged in -->
+<ng-template #authenticated>
+    <div *ngIf="_service | async as user">
+        <h3>Howdy, {{ user.displayName }}</h3>
+        <button (click)="_service.signOut()">Logout</button>
+    </div>
+</ng-template>

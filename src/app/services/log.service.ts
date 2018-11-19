@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../Inerfaces/user.interface';
-import { auth } from 'firebase';
+import { auth, firestore } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators'
+import * as firebase from 'firebase/app';
 
 
 
@@ -15,7 +16,7 @@ import { switchMap } from 'rxjs/operators'
 })
 export class LogService {
 
- private user:Observable<User>
+ public user:Observable<User>
 
 
   constructor(public db: AngularFirestore,
@@ -33,7 +34,7 @@ export class LogService {
             private oAuthLogin(provider) {
               return this.auth.auth.signInWithPopup(provider)
                 .then((credential) => {
-                //  this.updateUserData(credential.user)
+                this.updateUser(credential.user)
                 })
             }
           
@@ -55,21 +56,9 @@ export class LogService {
               });
             }
 
-            anonymousLogin() {
-              return this.auth.auth
-                .signInAnonymously()
-                .then(credential => {
-                 // this.notify.update('Welcome to Firestarter!!!', 'success');
-                  return this.updateUser(credential.user); // if using firestore
-                })
-                .catch(error => {
-                  this.handleError(error);
-                });
-            }
-
-            private handleError(error: Error) {
-              console.error(error);
-             // this.notify.update(error.message, 'error');
-            }
-
-}
+           Login() {
+              const provider =  new auth.EmailAuthProvider();
+              return this.oAuthLogin(provider) 
+              
+                  }
+                }
